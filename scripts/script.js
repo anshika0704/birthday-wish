@@ -1,85 +1,173 @@
 function renderName() {
+
   const word = document.getElementById("nameInput").value;
-  const letters = document.querySelectorAll(".letter");
 
-  if (word.length > letters.length) {
-    alert("Too many characters. Max 8 letters supported.");
-    return;
-  }
+  const container = document.getElementById("container");
 
-  for (let i = 0; i < letters.length; i++) {
-    const letterDiv = letters[i];
-    const cells = letterDiv.querySelectorAll(".cell");
+  container.innerHTML = "";
 
-    // Clear previous color
-    cells.forEach(cell => cell.style.backgroundColor = "transparent");
+  for (let i = 0; i < word.length; i++) {
 
-    if (i < word.length) {
-      const char = word[i];
-      if (!char.match(/[A-Z]/)) {
-        alert("Please enter only English letters.");
-        return;
-      }
-
-      const pattern = letterPatterns[char];
-      if (!pattern) continue;
-
-      pattern.forEach((val, idx) => {
-        if (val === 1) {
-          cells[idx].style.backgroundColor = "yellow"; // you can change to desired color
-        }
-      });
-    }
-  }
-}
-
-
-  /*
-  for(let i = 0; i < word.length; i++) {
     const char = word[i];
 
-    if(!char.match(/^[a-zA-Z]$/)) {
-      alert ("Please enter a valid name with only English letters (A-Z or a-z).");
+    const upperChar = char.toUpperCase();
 
+    if (!char.match(/[a-zA-Z]/)) {
+      alert("Please enter only English letters.");
       return;
     }
-
-    const upperChar = char.toUpperCase();
 
     const functionName = `handle${upperChar}`;
 
     if(typeof window[functionName] === "function") {
-      window[functionName]();
+
+      const letterDiv = document.createElement("div");
+      letterDiv.classList.add("letter");
+      container.appendChild(letterDiv);
+      window[functionName](letterDiv);
+
     } else {
       console.log(`No handler defined for character '${char}'`);
     }
   }
 }
 
-function handleA() { console.log("Handling A"); }
-function handleB() { console.log("Handling B"); }
-function handleC() { console.log("Handling C"); }
-function handleD() { console.log("Handling D"); }
-function handleE() { console.log("Handling E"); }
-function handleF() { console.log("Handling F"); }
-function handleG() { console.log("Handling G"); }
-function handleH() { console.log("Handling H"); }
-function handleI() { console.log("Handling I"); }
-function handleJ() { console.log("Handling J"); }
-function handleK() { console.log("Handling K"); }
-function handleL() { console.log("Handling L"); }
-function handleM() { console.log("Handling M"); }
-function handleN() { console.log("Handling N"); }
-function handleO() { console.log("Handling O"); }
-function handleP() { console.log("Handling P"); }
-function handleQ() { console.log("Handling Q"); }
-function handleR() { console.log("Handling R"); }
-function handleS() { console.log("Handling S"); }
-function handleT() { console.log("Handling T"); }
-function handleU() { console.log("Handling U"); }
-function handleV() { console.log("Handling V"); }
-function handleW() { console.log("Handling W"); }
-function handleX() { console.log("Handling X"); }
-function handleY() { console.log("Handling Y"); }
-function handleZ() { console.log("Handling Z"); } 
-*/
+function handleA(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 6, 10, 11, 12, 13, 14, 15, 16, 20, 21, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleB(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 6, 10, 11, 12, 13, 14, 16, 20, 21, 22, 23, 24];
+  createLetter(letterDiv, pattern);
+}
+
+function handleC(letterDiv) {
+  const pattern = [2, 3, 4, 5, 6, 11, 16, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleD(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 6, 10, 11, 15, 16, 20, 21, 22, 23, 24];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleE(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern);
+}
+
+function handleF(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15, 16, 21];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleG(letterDiv) { 
+  const pattern = [2, 3, 4, 5, 6, 11, 13, 14, 15, 16, 18, 20, 21, 22, 23, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleH(letterDiv) { 
+  const pattern = [1, 5, 6, 10, 11, 12, 13, 14, 15, 16, 20, 21, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleI(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 8, 13, 18, 21, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern);}
+
+function handleJ(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 8, 11, 13, 16, 18, 22, 23];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleK(letterDiv) { 
+  const pattern = [1, 5, 6, 9, 11, 12, 13, 16, 19, 21, 25];
+  createLetter(letterDiv, pattern);
+}
+
+function handleL(letterDiv) { 
+  const pattern = [1, 6, 11, 16, 21, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleM(letterDiv) { 
+  const pattern = [1, 5, 6, 7, 9, 10, 11, 13, 15, 16, 20, 21, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleN(letterDiv) { 
+  const pattern = [1, 5, 6, 7, 10, 11, 13, 15,16, 19, 20, 21, 25];
+  createLetter(letterDiv, pattern);
+}
+
+function handleO(letterDiv) { 
+  const pattern = [2, 3, 4, 6, 10, 11, 15, 16, 20, 22, 23, 24];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleP(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 6, 10, 11, 12,13, 14, 16, 21];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleQ(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 6, 9, 11, 14, 16, 18, 19, 21, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleR(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 6, 10, 11, 12, 13, 14, 16, 19, 21, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleS(letterDiv) {
+  const pattern = [1, 2, 3, 4, 5, 6, 11, 12,13, 14, 15, 20, 21, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleT(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 8, 13, 18, 23];
+ createLetter(letterDiv, pattern);
+}
+
+function handleU(letterDiv) { 
+  const pattern = [1, 5, 6, 10, 11, 15, 16, 20, 21, 22, 23, 24, 25];
+  createLetter(letterDiv, pattern); 
+}
+
+function handleV(letterDiv) { 
+  const pattern = [1, 5, 6, 10, 11, 15, 17, 19, 23];
+ createLetter(letterDiv, pattern);
+}
+
+function handleW(letterDiv) { 
+  const pattern = [1, 5, 6, 10, 11, 13, 15, 16, 17, 19, 20, 21, 25];
+ createLetter(letterDiv, pattern); 
+}
+
+function handleX(letterDiv) { 
+  const pattern = [1, 5, 7, 9, 13, 17, 19, 21, 25];
+ createLetter(letterDiv, pattern); 
+}
+
+function handleY(letterDiv) { 
+  const pattern = [1, 5, 7, 9, 13, 17, 21];
+ createLetter(letterDiv, pattern);
+}
+
+function handleZ(letterDiv) { 
+  const pattern = [1, 2, 3, 4, 5, 9, 13, 17, 21, 22, 23, 24, 25];
+ createLetter(letterDiv, pattern); 
+} 
+
+function createLetter(letterDiv, pattern) {
+  for (let i = 1; i <= 25; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell", `cell${i}`);
+    if (pattern.includes(i)) {
+      cell.classList.add("on");
+    }
+    letterDiv.appendChild(cell);
+  }
+}
